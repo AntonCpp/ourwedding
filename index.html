@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Свадебное приглашение — Даниил & Карина</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Great+Vibes&family=Italiana&family=Jost:wght@300;400;500;600&family=Alex+Brush&display=swap"
+    rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    @font-face {
+      font-family: 'Ankona Kursive';
+      src: url('Ankona Kursive.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    :root {
+      --flora-ivory: #fdfbf7;
+      --flora-cream: #f5efe6;
+      --flora-paper: #fffcf9;
+      --flora-sage: #b8a88a;
+      --flora-sage-deep: #9a8568;
+      --flora-sage-light: #d4c4ad;
+      --flora-blush: #ead9c8;
+      --flora-rose: #c4a484;
+      --flora-gold: #c9a96e;
+      --flora-gold-light: #dfc99a;
+      --flora-text: #3d3530;
+      --flora-text-soft: #6b6259;
+      --flora-border: rgba(184, 168, 138, 0.28);
+      --flora-shadow: 0 20px 60px rgba(61, 53, 48, 0.07);
+      --flora-radius: 32px;
+      --font-display: 'Italiana', serif;
+      --font-heading: 'Cormorant Garamond', serif;
+      --font-body: 'Jost', sans-serif;
+      --font-script: 'Great Vibes', cursive;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Плавное всплытие блоков при скролле (AOS) */
+    [data-aos] {
+      transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+
+    body:not(.invite-open) [data-aos] {
+      visibility: hidden;
+    }
+
+    body.invite-open [data-aos].aos-animate {
+      visibility: visible;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--flora-ivory);
+      color: var(--flora-text);
+      line-height: 1.75;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 10% 0%, rgba(234, 217, 200, 0.35), transparent 55%),
+        radial-gradient(ellipse 60% 40% at 95% 20%, rgba(245, 239, 230, 0.55), transparent 50%),
+        radial-gradient(ellipse 50% 30% at 50% 100%, rgba(201, 169, 110, 0.1), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    /* ===== WELCOME MODAL ===== */
+    .welcome-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .welcome-modal.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .welcome-backdrop {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(160deg, rgba(245, 239, 230, 0.85), rgba(255, 252, 249, 0.95)),
+        url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%239a8568' stroke-opacity='0.06' stroke-width='0.6'%3E%3Cpath d='M40 8 Q52 20 40 32 Q28 20 40 8'/%3E%3Cpath d='M8 40 Q20 52 32 40 Q20 28 8 40'/%3E%3Cpath d='M40 48 Q52 60 40 72 Q28 60 40 48'/%3E%3Cpath d='M48 40 Q60 52 72 40 Q60 28 48 40'/%3E%3C/g%3E%3C/svg%3E");
+      backdrop-filter: blur(6px);
+    }
+
+    .welcome-petals {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .petal {
+      position: absolute;
+      width: 14px;
+      height: 18px;
+      background: linear-gradient(135deg, var(--flora-blush), rgba(255, 255, 255, 0.6));
+      border-radius: 50% 50% 50% 0;
+      opacity: 0.35;
+      animation: petalFall linear infinite;
+    }
+
+    .petal:nth-child(1) {
+      left: 8%;
+      animation-duration: 14s;
+      animation-delay: 0s;
+    }
+
+    .petal:nth-child(2) {
+      left: 22%;
+      animation-duration: 18s;
+      animation-delay: 2s;
+      width: 10px;
+      height: 14px;
+    }
+
+    .petal:nth-child(3) {
+      left: 45%;
+      animation-duration: 12s;
+      animation-delay: 4s;
+    }
+
+    .petal:nth-child(4) {
+      left: 68%;
+      animation-duration: 16s;
+      animation-delay: 1s;
+    }
+
+    .petal:nth-child(5) {
+      left: 85%;
+      animation-duration: 20s;
+      animation-delay: 3s;
+      width: 12px;
+      height: 16px;
+    }
+
+    .petal:nth-child(6) {
+      left: 55%;
+      animation-duration: 15s;
+      animation-delay: 6s;
+      opacity: 0.25;
+    }
+
+    @keyframes petalFall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.4;
+      }
+
+      90% {
+        opacity: 0.2;
+      }
+
+      100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    .welcome-card {
+      position: relative;
+      width: min(440px, 100%);
+      background: var(--flora-paper);
+      border: 1px solid rgba(184, 151, 106, 0.35);
+      border-radius: 4px;
+      padding: 52px 40px 44px;
+      text-align: center;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+      animation: cardReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes cardReveal {
+      from {
+        opacity: 0;
+        transform: scale(0.92) translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .welcome-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--flora-sage);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .welcome-card h1 {
+      font-family: 'Ankona Kursive', cursive;
+      font-size: clamp(2.8rem, 10vw, 4rem);
+      font-weight: 400;
+      color: var(--flora-text);
+      line-height: 1.15;
+      margin-bottom: 8px;
+      letter-spacing: 0.01em;
+    }
+
+    .welcome-card h1 span {
+      display: inline-block;
+      color: var(--flora-gold);
+      font-family: var(--font-script);
+      font-size: 0.75em;
+      margin: 0 4px;
+    }
+
+    .welcome-date {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      color: var(--flora-gold);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .welcome-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 20px 0;
+      color: var(--flora-sage-light);
+    }
+
+    .welcome-divider::before,
+    .welcome-divider::after {
+      content: '';
+      height: 1px;
+      width: 50px;
+      background: linear-gradient(90deg, transparent, var(--flora-gold-light), transparent);
+    }
+
+    .welcome-text {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--flora-text-soft);
+      max-width: 300px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+
+    .welcome-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 40px;
+      background: linear-gradient(135deg, var(--flora-sage-deep), var(--flora-sage));
+      color: #fff;
+      border: none;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      box-shadow: 0 8px 30px rgba(154, 133, 104, 0.35);
+    }
+
+    .welcome-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(154, 133, 104, 0.45);
+    }
+
+    .welcome-btn:focus-visible {
+      outline: 2px solid var(--flora-gold);
+      outline-offset: 4px;
+    }
+
+    /* ===== LAYOUT ===== */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 28px 20px 40px;
+    }
+
+    .site-content {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.9s ease 0.2s, transform 0.9s ease 0.2s;
+    }
+
+    body.invite-open .site-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 90px 28px 70px;
+      background: linear-gradient(165deg, var(--flora-paper) 0%, var(--flora-cream) 100%);
+      border-radius: 4px;
+      margin-bottom: 36px;
+      overflow: hidden;
+      box-shadow: var(--flora-shadow);
+      border: 1px solid var(--flora-border);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 16px;
+      border: 1px solid rgba(184, 151, 106, 0.25);
+      pointer-events: none;
+    }
+
+    .hero-wreath {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -52%);
+      width: min(420px, 95%);
+      height: auto;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .hero .date {
+      position: relative;
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      color: var(--flora-sage);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+
+    .hero h1 {
+      position: relative;
+      font-family: 'Ankona Kursive', cursive;
+      font-size: clamp(2.8rem, 10vw, 4.2rem);
+      font-weight: 400;
+      margin-bottom: 12px;
+      letter-spacing: 0.03em;
+    }
+
+    .hero h1 span {
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    .hero h1 .ampersand {
+      font-family: var(--font-heading);
+      font-style: italic;
+      color: var(--flora-rose);
+      font-size: 0.75em;
+    }
+
+    .hero .sub {
+      position: relative;
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--flora-text-soft);
+      margin-top: 16px;
+      font-weight: 400;
+    }
+
+    /* ===== SECTION HEADINGS ===== */
+    .section-eyebrow {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--flora-sage-light);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .card h2 {
+      font-family: var(--font-heading);
+      text-align: center;
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      font-weight: 600;
+      margin-bottom: 28px;
+      color: var(--flora-text);
+      position: relative;
+    }
+
+    .card h2::after {
+      content: '❧';
+      display: block;
+      font-size: 1rem;
+      color: var(--flora-gold);
+      margin-top: 10px;
+      font-weight: 400;
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: var(--flora-paper);
+      border-radius: 4px;
+      padding: 40px 36px;
+      margin-bottom: 32px;
+      box-shadow: var(--flora-shadow);
+      border: 1px solid var(--flora-border);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--flora-gold), transparent);
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 28px 70px rgba(42, 50, 40, 0.1);
+    }
+
+    /* ===== TIMER ===== */
+    .timer-section {
+      text-align: center;
+      background: var(--flora-paper);
+      border-radius: 4px;
+      padding: 36px 24px;
+      box-shadow: var(--flora-shadow);
+      margin-bottom: 32px;
+      border: 1px solid var(--flora-border);
+    }
+
+    .timer-section:hover {
+      transform: none;
+    }
+
+    .timer-label {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--flora-text-soft);
+    }
+
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      max-width: 480px;
+      margin: 22px auto 0;
+    }
+
+    .timer-item {
+      background: linear-gradient(180deg, var(--flora-cream), rgba(240, 232, 220, 0.5));
+      border-radius: 4px;
+      padding: 16px 8px;
+      border: 1px solid var(--flora-border);
+      transition: border-color 0.3s;
+    }
+
+    .timer-item:hover {
+      border-color: var(--flora-gold-light);
+    }
+
+    .timer-item .num {
+      display: block;
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: var(--flora-sage-deep);
+      line-height: 1.1;
+      font-family: var(--font-heading);
+    }
+
+    .timer-item .label {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--flora-text-soft);
+      font-weight: 500;
+    }
+
+    /* ===== TEXT BLOCKS ===== */
+    .invitation-text {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto;
+      color: var(--flora-text-soft);
+      line-height: 1.85;
+    }
+
+    .invitation-text p {
+      margin-bottom: 18px;
+    }
+
+    .invitation-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ===== PROGRAM ===== */
+    .program-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 480px;
+      margin: 0 auto;
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .program-grid::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: linear-gradient(180deg, var(--flora-sage-light), var(--flora-gold-light), var(--flora-sage-light));
+    }
+
+    .program-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 14px 0 14px 20px;
+      position: relative;
+      transition: padding-left 0.25s;
+    }
+
+    .program-item::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--flora-paper);
+      border: 2px solid var(--flora-sage);
+    }
+
+    .program-item:hover {
+      padding-left: 26px;
+    }
+
+    .program-item:hover::before {
+      background: var(--flora-blush);
+      border-color: var(--flora-rose);
+    }
+
+    .program-item .time {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--flora-sage);
+      min-width: 60px;
+    }
+
+    .program-item .desc {
+      text-align: right;
+      color: var(--flora-text-soft);
+      font-size: 0.95rem;
+    }
+
+    /* ===== MAP ===== */
+    .map-wrap {
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(42, 50, 40, 0.06);
+      margin-bottom: 20px;
+      border: 1px solid var(--flora-border);
+    }
+
+    .venue-info {
+      text-align: center;
+      margin: 16px 0 24px;
+    }
+
+    .venue-name {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: var(--flora-text);
+      border-bottom: 1px solid var(--flora-gold-light);
+      padding-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .venue-address {
+      display: block;
+      font-size: 0.88rem;
+      color: var(--flora-text-soft);
+      margin-top: 8px;
+      letter-spacing: 0.04em;
+    }
+
+    .map-btn {
+      display: inline-block;
+      background: var(--flora-sage-deep);
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 0;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: background 0.3s, transform 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .map-btn:hover {
+      background: var(--flora-sage);
+      transform: translateY(-1px);
+    }
+
+    /* ===== DRESS CODE ===== */
+    .dress-intro {
+      text-align: center;
+      color: var(--flora-text-soft);
+      margin-bottom: 24px;
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-style: italic;
+    }
+
+    .dress-columns {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 36px 28px;
+      margin-top: 8px;
+    }
+
+    .dress-column h3 {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 600;
+      text-align: center;
+      color: var(--flora-text);
+      margin-bottom: 18px;
+      letter-spacing: 0.04em;
+    }
+
+    .dress-gallery.women {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .dress-gallery.women img:first-child {
+      grid-column: 1 / -1;
+      aspect-ratio: 16 / 9;
+    }
+
+    .dress-gallery.women img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid var(--flora-border);
+      box-shadow: 0 6px 20px rgba(61, 53, 48, 0.06);
+      transition: transform 0.35s ease;
+    }
+
+    .dress-gallery.women img:nth-last-child(2),
+    .dress-gallery.women img:last-child {
+      aspect-ratio: 4 / 5;
+    }
+
+    .dress-gallery.men {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .dress-gallery.men img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid var(--flora-border);
+      box-shadow: 0 6px 20px rgba(61, 53, 48, 0.06);
+      transition: transform 0.35s ease;
+    }
+
+    .dress-gallery.men img:hover {
+      transform: scale(1.02);
+    }
+
+    .dress-notes {
+      font-size: 0.88rem;
+      color: var(--flora-text-soft);
+      line-height: 1.65;
+    }
+
+    .dress-notes .dress-lead {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--flora-text);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .dress-notes p {
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+
+    .dress-notes strong {
+      color: var(--flora-text);
+      font-weight: 600;
+    }
+
+    /* ===== GIFT NOTE ===== */
+    .gift-text {
+      text-align: center;
+      font-family: var(--font-heading);
+      font-size: 1.12rem;
+      color: var(--flora-text-soft);
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    /* ===== CONTACTS ===== */
+    .contacts-block {
+      text-align: center;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .contacts-block p {
+      font-family: var(--font-heading);
+      font-size: 1.08rem;
+      color: var(--flora-text-soft);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .contact-name {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--flora-text);
+      margin-bottom: 8px;
+    }
+
+    .contact-phone {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--flora-sage-deep);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--flora-gold-light);
+      padding-bottom: 2px;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .contact-phone:hover {
+      color: var(--flora-gold);
+      border-color: var(--flora-gold);
+    }
+
+    .contact-divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--flora-gold-light), transparent);
+      margin: 14px auto;
+      max-width: 180px;
+    }
+
+    /* ===== WISHES ===== */
+    .wish-block {
+      background: linear-gradient(135deg, var(--flora-cream), rgba(240, 232, 220, 0.4));
+      border-radius: 4px;
+      padding: 32px 28px;
+      text-align: center;
+      border: 1px solid var(--flora-border);
+    }
+
+    .wish-block p {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--flora-text-soft);
+      margin-bottom: 8px;
+    }
+
+    .wish-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ===== VK ===== */
+    .vk-text {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--flora-text-soft);
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .vk-wrap {
+      text-align: center;
+    }
+
+    .vk-btn {
+      display: inline-block;
+      background: var(--flora-sage-deep);
+      color: #fff;
+      padding: 14px 32px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .vk-btn:hover {
+      background: var(--flora-sage-deep);
+      transform: translateY(-1px);
+    }
+
+    /* ===== FORM ===== */
+    .form-group {
+      margin-bottom: 26px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--flora-text);
+      font-size: 0.92rem;
+      letter-spacing: 0.02em;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid var(--flora-border);
+      border-radius: 0;
+      font-size: 0.95rem;
+      font-family: var(--font-body);
+      background: var(--flora-ivory);
+      transition: border-color 0.3s, box-shadow 0.3s;
+      color: var(--flora-text);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--flora-sage);
+      box-shadow: 0 0 0 3px rgba(92, 122, 94, 0.12);
+    }
+
+    .checkbox-group,
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+    }
+
+    .checkbox-group label,
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 400;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--flora-text-soft);
+      transition: color 0.2s;
+    }
+
+    .checkbox-group label:hover,
+    .radio-group label:hover {
+      color: var(--flora-sage);
+    }
+
+    .checkbox-group input[type="checkbox"],
+    .radio-group input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--flora-sage);
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, var(--flora-sage-deep), var(--flora-sage));
+      color: white;
+      padding: 17px;
+      border: none;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s;
+      margin-top: 8px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 30px rgba(154, 133, 104, 0.3);
+    }
+
+    .form-footnote {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--flora-text-soft);
+      margin-top: 20px;
+      line-height: 1.7;
+    }
+
+    .form-footnote strong {
+      color: var(--flora-sage-deep);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      text-align: center;
+      color: var(--flora-sage-light);
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 30px 0 12px;
+      border-top: 1px solid var(--flora-border);
+      margin-top: 12px;
+    }
+
+    /* ===== MUSIC BTN ===== */
+    .music-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--flora-paper);
+      color: var(--flora-sage-deep);
+      border: 1px solid var(--flora-border);
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      box-shadow: var(--flora-shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .music-btn:hover {
+      transform: scale(1.06);
+      box-shadow: 0 12px 40px rgba(42, 50, 40, 0.12);
+    }
+
+    .music-btn.playing {
+      animation: pulse 2s infinite;
+      border-color: var(--flora-rose);
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(196, 164, 132, 0.35);
+      }
+
+      100% {
+        box-shadow: 0 0 0 18px rgba(196, 164, 132, 0);
+      }
+    }
+
+    /* ===== REDUCED MOTION ===== */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      body:not(.invite-open) [data-aos],
+      body.invite-open [data-aos] {
+        visibility: visible;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .site-content {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      .welcome-card {
+        padding: 44px 28px 36px;
+      }
+
+      .hero {
+        padding: 70px 20px 55px;
+      }
+
+      .card {
+        padding: 32px 20px;
+      }
+
+      .timer-grid {
+        gap: 8px;
+      }
+
+      .timer-item .num {
+        font-size: 1.8rem;
+      }
+
+      .program-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+
+      .program-item .desc {
+        text-align: left;
+      }
+
+      .dress-columns {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .music-btn {
+        width: 48px;
+        height: 48px;
+        bottom: 18px;
+        right: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body class="modal-open">
+
+  <!-- ===== WELCOME MODAL ===== -->
+  <div id="welcomeModal" class="welcome-modal" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+    <div class="welcome-backdrop"></div>
+    <div class="welcome-petals" aria-hidden="true">
+      <span class="petal"></span>
+      <span class="petal"></span>
+      <span class="petal"></span>
+      <span class="petal"></span>
+      <span class="petal"></span>
+      <span class="petal"></span>
+    </div>
+    <div class="welcome-card">
+      <p class="welcome-eyebrow">Приглашение на свадьбу</p>
+      <h1 id="welcomeTitle">Даниила <span>&</span> Карины</h1>
+      <p class="welcome-date">4 сентября 2026</p>
+      <div class="welcome-divider" aria-hidden="true">✦</div>
+      <p class="welcome-text">Мы будем счастливы разделить с вами самый нежный день нашей жизни</p>
+      <button type="button" class="welcome-btn" id="openInviteBtn">Открыть приглашение</button>
+    </div>
+  </div>
+
+  <div class="site-content">
+    <div class="container">
+
+      <section class="hero" data-aos="fade-up" data-aos-duration="1000">
+        <svg class="hero-wreath" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true">
+          <ellipse cx="200" cy="100" rx="175" ry="75" stroke="#b8a88a" stroke-width="0.8" opacity="0.5" />
+          <path d="M30 100 Q60 60 100 75 Q80 50 95 30" stroke="#b8a88a" stroke-width="1" fill="none" opacity="0.6" />
+          <path d="M370 100 Q340 60 300 75 Q320 50 305 30" stroke="#b8a88a" stroke-width="1" fill="none"
+            opacity="0.6" />
+          <circle cx="95" cy="32" r="8" fill="#ead9c8" opacity="0.7" />
+          <circle cx="305" cy="32" r="8" fill="#ead9c8" opacity="0.7" />
+          <circle cx="55" cy="85" r="5" fill="#c9a96e" opacity="0.5" />
+          <circle cx="345" cy="85" r="5" fill="#c9a96e" opacity="0.5" />
+          <path d="M170 155 Q200 175 230 155" stroke="#d4c4ad" stroke-width="0.8" fill="none" />
+          <path d="M185 160 Q200 168 215 160" stroke="#d4c4ad" stroke-width="0.6" fill="none" />
+        </svg>
+        <div class="date">4 сентября 2026 · 15:15</div>
+        <h1>
+          <span>Даниил</span>
+          <span class="ampersand">&</span>
+          <span>Карина</span>
+        </h1>
+        <div class="sub">Приглашаем вас на нашу свадьбу</div>
+      </section>
+
+      <section class="timer-section" data-aos="fade-up" data-aos-delay="100">
+        <div class="timer-label">До нашей свадьбы осталось</div>
+        <div class="timer-grid" id="timer">
+          <div class="timer-item"><span class="num" id="days">0</span><span class="label">Дней</span></div>
+          <div class="timer-item"><span class="num" id="hours">0</span><span class="label">Часов</span></div>
+          <div class="timer-item"><span class="num" id="minutes">0</span><span class="label">Минут</span></div>
+          <div class="timer-item"><span class="num" id="seconds">0</span><span class="label">Секунд</span></div>
+        </div>
+      </section>
+
+      <section class="card" data-aos="fade-up" data-aos-delay="150">
+        <span class="section-eyebrow"></span>
+        <h2>Дорогие!</h2>
+        <div class="invitation-text">
+          <p>В этот важный для нас день мы с любовью приглашаем вас разделить с нами праздник - День нашей свадьбы.</p>
+        </div>
+      </section>
+
+      <section class="card" data-aos="fade-up" data-aos-delay="100">
+        <span class="section-eyebrow"></span>
+        <h2>Программа дня</h2>
+        <div class="program-grid">
+          <div class="program-item" data-aos="fade-up" data-aos-delay="50"><span class="time">15:15</span><span
+              class="desc">Сбор гостей</span></div>
+          <div class="program-item" data-aos="fade-up" data-aos-delay="100"><span class="time">15:30</span><span
+              class="desc">Официальная регистрация в ЗАГСе</span></div>
+          <div class="program-item" data-aos="fade-up" data-aos-delay="150"><span class="time">16:45</span><span
+              class="desc">Сбор гостей - фуршет</span></div>
+          <div class="program-item" data-aos="fade-up" data-aos-delay="200"><span class="time">17:00</span><span
+              class="desc">Банкет в ресторане "Голден Хорс"</span></div>
+
+        </div>
+      </section>
+
+      <section class="card" data-aos="fade-up" data-aos-delay="250">
+        <span class="section-eyebrow"></span>
+        <h2>Место проведения</h2>
+        <div class="map-wrap">
+          <iframe src="https://yandex.ru/map-widget/v1/?ll=38.812233,47.217525&pt=38.812233,47.217525,pm2rdl&z=17&l=map"
+            width="100%" height="350" frameborder="0" allowfullscreen title="Карта места проведения">
+          </iframe>
+        </div>
+        <div class="venue-info">
+          <span class="venue-name">Ресторан «Голден Хорс» Шатер</span>
+          <span class="venue-address">Конюшенный проезд, 102, Таганрог</span>
+        </div>
+        <div style="text-align:center;">
+          <a href="https://yandex.ru/maps/-/CTa65COE" class="map-btn" target="_blank" rel="noopener">Открыть карту с
+            маршрутом</a>
+        </div>
+      </section>
+
+      <section class="card" data-aos="fade-up" data-aos-delay="300">
+        <span class="section-eyebrow"></span>
+        <h2>Дресс-код</h2>
+        <p class="dress-intro">Мы мечтаем о том, чтобы этот день стал настоящим праздником красоты, стиля и тёплых
+          эмоций. Ваш образ станет важной
+          частью атмосферы нашей свадьбы.</p>
+        <div class="dress-columns">
+          <div class="dress-column">
+            <h3>Для женщин</h3>
+            <div class="dress-gallery women">
+              <img src="женщины/5339259642107861053.jpg" alt="Пример образа для женщин" loading="lazy">
+              <img src="женщины/5339259642107861056.jpg" alt="Пример образа для женщин" loading="lazy">
+              <img src="женщины/5339259642107861057.jpg" alt="Пример образа для женщин" loading="lazy">
+              <img src="женщины/5339259642107861058.jpg" alt="Пример образа для женщин" loading="lazy">
+              <img src="женщины/5339259642107861060.jpg" alt="Пример образа для женщин" loading="lazy">
+              <img src="женщины/5339259642107861061.jpg" alt="Пример образа для женщин" loading="lazy">
+              <img src="женщины/5339259642107861080.jpg" alt="Пример образа для женщин" loading="lazy">
+            </div>
+            <div class="dress-notes">
+              <p class="dress-lead">• Платья и костюмы длины миди и макси</p>
+              <p class="dress-lead">• Легкие струящиеся ткани
+              </p>
+              <p class="dress-lead">• Атлас, шелк, шифон, органза</p>
+              <p class="dress-lead">• Блестящие элементы, пайетки, перья</p>
+              <p class="dress-lead">• Фактурные детали приветствуются</p>
+              <p class="dress-lead">• Оттенки: шампань, бежевый, золотой. оливковый, шалфейный, песочный, оранжевый</p>
+              <p class="dress-lead">• Для нашего улобства рекомендуем обувь на плоском ходу</p>
+              <p class="dress-lead">• Минималистичные украшения и аксессуары</p>
+            </div>
+          </div>
+          <div class="dress-column">
+            <h3>Для мужчин</h3>
+            <div class="dress-gallery men">
+              <img src="мужчины/5339259642107861088.jpg" alt="Пример образа для мужчин" loading="lazy">
+              <img src="мужчины/5339184372805998685.jpg" alt="Пример образа для мужчин" loading="lazy">
+              <img src="мужчины/5339184372805998716.jpg" alt="Пример образа для мужчин" loading="lazy">
+            </div>
+            <div class="dress-notes">
+              <p class="dress-lead">• Костюмы светлых и природных оттенков</p>
+              <p class="dress-lead">• Рубашки без ярких принтов</p>
+              <p class="dress-lead">• Допустимы пиджаки без галстука</p>
+              <p class="dress-lead">• Обувь: лоферы, кассические туфли</p>
+              <p class="dress-lead">• Аксессуары: часы, платок в пиджаке, ремень
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section class="card" data-aos="fade-up" data-aos-delay="400">
+        <span class="section-eyebrow"></span>
+        <h2>Детали</h2>
+        <p class="gift-text">Самым большим подарком для нас станет возможность разделить этот день с вами. Если вы
+          захотите поздравить нас ещё и
+          памятным подарком, мы будем искренне благодарны за ваш вклад в начало нашей семейной истории.</p>
+        <p class="gift-text">Будем рады альтернативе букетам — бутылочке алкогольного или другого приятного напитка с
+          запиской,
+          когда нам её открыть</p>
+      </section>
+
+      <section class="card" data-aos="fade-up" data-aos-delay="450">
+        <span class="section-eyebrow"></span>
+        <h2>Подтвердите присутствие</h2>
+        <form id="rsvpForm">
+          <div class="form-group">
+            <label for="guestName">Ваше имя и фамилия</label>
+            <input type="text" id="guestName" name="name" placeholder="Иван Иванов / Алина Иванова" required>
+          </div>
+
+          <div class="form-group">
+            <label>Планируете ли вы присутствовать на свадьбе?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="attending" value="Да, с удовольствием!" required> Да, с
+                удовольствием!</label>
+              <label><input type="radio" name="attending" value="К сожалению, не могу :("> К сожалению, не могу
+                :(</label>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">Отправить</button>
+          <div class="form-footnote">
+            <strong>*</strong> Просим гостей, приходящих в паре, заполнять форму по отдельности. Перед отправкой
+            убедитесь, что у вас <strong>включен VPN</strong><br>
+            Ждём вашего ответа до <strong>04.09.2026</strong>
+          </div>
+        </form>
+      </section>
+
+      <section class="card" data-aos="fade-up" data-aos-delay="500">
+        <span class="section-eyebrow"></span>
+        <h2>Остались вопросы?</h2>
+        <div class="contacts-block">
+          <p>Если у вас возникнут вопросы, связанные со свадьбой, а также если вы готовите сюрприз — вы всегда можете
+            обратиться к нашему координатору.</p>
+          <a href="https://web.telegram.org/a/#655914922" class="contact-name" target="_blank" rel="noopener">Дарья</a>
+          <hr class="contact-divider">
+          <a href="tel:+79185908111" class="contact-phone">+7 918 590-81-11</a>
+        </div>
+      </section>
+
+      <div class="footer" data-aos="fade-up" data-aos-delay="100">
+        Даниил & Карина · 2026
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      var aosStarted = false;
+
+      function initScrollAnimations() {
+        if (typeof AOS === 'undefined') return;
+
+        if (!aosStarted) {
+          AOS.init({
+            duration: 1000,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 80,
+            mirror: false,
+            anchorPlacement: 'top-bottom',
+            startEvent: 'DOMContentLoaded'
+          });
+          aosStarted = true;
+        } else {
+          AOS.refreshHard();
+        }
+      }
+
+      // ===== WELCOME MODAL =====
+      var welcomeModal = document.getElementById('welcomeModal');
+      var openInviteBtn = document.getElementById('openInviteBtn');
+
+      function openInvitation() {
+        welcomeModal.classList.add('is-hidden');
+        document.body.classList.remove('modal-open');
+        document.body.classList.add('invite-open');
+        window.scrollTo(0, 0);
+
+        setTimeout(function () {
+          initScrollAnimations();
+        }, 350);
+      }
+
+      openInviteBtn.addEventListener('click', openInvitation);
+
+      // ===== TIMER =====
+      function updateTimer() {
+        var target = new Date('2026-09-04T15:15:00').getTime();
+        var now = new Date().getTime();
+        var diff = target - now;
+        if (diff < 0) diff = 0;
+
+        document.getElementById('days').textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById('hours').textContent = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById('minutes').textContent = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById('seconds').textContent = Math.floor((diff % (1000 * 60)) / 1000);
+      }
+      updateTimer();
+      setInterval(updateTimer, 1000);
+
+      // ===== MUSIC =====
+      var music = document.getElementById('bgMusic');
+      var musicBtn = document.getElementById('musicToggle');
+
+      if (musicBtn) {
+        var musicPlaying = false;
+
+        function toggleMusic() {
+          if (musicPlaying) {
+            music.pause();
+            musicPlaying = false;
+            musicBtn.classList.remove('playing');
+            musicBtn.textContent = '🎵';
+            musicBtn.setAttribute('aria-label', 'Включить музыку');
+          } else {
+            music.play().catch(function () { });
+            musicPlaying = true;
+            musicBtn.classList.add('playing');
+            musicBtn.textContent = '⏸';
+            musicBtn.setAttribute('aria-label', 'Выключить музыку');
+          }
+        }
+
+        musicBtn.addEventListener('click', toggleMusic);
+      }
+
+      // ===== FORM =====
+      var rsvpForm = document.getElementById('rsvpForm');
+      var submitting = false;
+
+      rsvpForm.onsubmit = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (submitting) return false;
+        submitting = true;
+
+        var form = this;
+        var submitBtn = form.querySelector('.submit-btn');
+        var btnText = submitBtn.textContent;
+        submitBtn.textContent = 'Отправка...';
+        submitBtn.disabled = true;
+
+        var nameInput = form.querySelector('#guestName');
+        var name = nameInput.value.trim() || 'не указано';
+        var attendingEl = form.querySelector('input[name="attending"]:checked');
+        var attending = attendingEl ? attendingEl.value : 'не ответил';
+
+        if (!attendingEl) {
+          alert('Пожалуйста, выберите вариант присутствия');
+          submitting = false;
+          submitBtn.textContent = btnText;
+          submitBtn.disabled = false;
+          return false;
+        }
+
+        var botToken = '8842430576:AAEYE-O3GzePlvCRmFIhmjkrhEIHK_zEom8';
+        var chatIds = ['654058837', '123703812'];
+
+        function sendDirect(message) {
+          return Promise.all(chatIds.map(function (id) {
+            return fetch('https://api.telegram.org/bot' + botToken + '/sendMessage', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ chat_id: id, text: message })
+            });
+          }));
+        }
+
+        fetch('telegram.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: name, attending: attending })
+        })
+          .then(function (res) {
+            if (!res.ok) throw new Error('PHP proxy failed');
+            return res.json();
+          })
+          .then(function (data) {
+            if (!data.ok) throw new Error('PHP proxy error');
+            alert('Спасибо! Мы ждём вас на нашей свадьбе ❤️');
+            form.reset();
+          })
+          .catch(function () {
+            var message = '🆕 Новое подтверждение на свадьбу!\n\nИмя: ' + name + '\nПрисутствие: ' + attending;
+            return sendDirect(message).then(function () {
+              alert('Спасибо! Мы ждём вас на нашей свадьбе ❤️');
+              form.reset();
+            });
+          })
+          .catch(function () {
+            alert('Не удалось отправить форму. Пожалуйста, проверьте подключение к интернету или VPN и отправьте снова.');
+          })
+          .finally(function () {
+            submitting = false;
+            submitBtn.textContent = btnText;
+            submitBtn.disabled = false;
+          });
+
+        return false;
+      };
+
+    });
+  </script>
+
+</body>
+
+</html>
