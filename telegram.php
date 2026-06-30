@@ -29,7 +29,7 @@ if ($wishes) {
 }
 
 $botToken = '8842430576:AAEYE-O3GzePlvCRmFIhmjkrhEIHK_zEom8';
-$chatIds = ['654058837', '123703812'];
+$chatIds = ['654058837', '1237038312'];
 
 $allOk = true;
 $errors = [];
